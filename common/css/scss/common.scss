@@ -1,0 +1,1870 @@
+/* Scss Document */
+
+/*-------------------------------
+
+	共通
+
+-------------------------------*/
+
+/*---------- 変数 ----------*/
+
+$baseColor: #1c2d59;
+$baseColorLt: #33487c;
+$baseColorDk: #0b1122;
+$baseColorHome: #e95504;
+$baseColorDesign: #e51373;
+$baseColorVacant: #0a893b;
+$baseColorToilet: #cf111b;
+$baseColorRenov: #0068b7;
+$baseColorReform: #0f8a3b;
+$bgColor: #f7f6f5;
+$colorWt: #ffffff;
+$colorRed: #e80521;
+$colorBlue: #1c6ae8;
+$colorOrange: #e27717;
+$colorGy: #cccccc;
+
+$fontSize12: 75%;
+$fontSize13: 81.3%;
+$fontSize14: 87.5%;
+$fontSize15: 93.75%;
+$fontSize18: 112.5%;
+$fontSize20: 125%;
+$fontSize22: 137.5%;
+$fontSize24: 150%;
+$fontSize28: 175%;
+$fontSize30: 187.5%;
+$fontSize34: 212.5%;
+$fontSize36: 225%;
+$fontSize40: 250%;
+$fontSize46: 287.5%;
+$fontSize48: 300%;
+
+$imgDir: "../images/"; //imagesディレクトリ
+
+/*---------- 全体共通 ----------*/
+
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
+
+*,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	//font-family: 'Noto Sans JP', sans-serif;
+	font-family: 'Noto Sans JP', 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', 'Noto Sans Japanese', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+	font-weight: 400;
+	color: $baseColorDk;
+	line-height: 1.5;
+	background: $bgColor;
+}
+
+// 余白クラス（0～100px）
+$num: 5; // 繰上げ単位
+@for $i from 0 through 20 {
+	.mt#{$i * $num} {
+		margin-top: #{$i * $num}px;
+	}
+	.mb#{$i * $num} {
+		margin-bottom: #{$i * $num}px;
+	}
+	.pt#{$i * $num} {
+		padding-top: #{$i * $num}px;
+	}
+	.pb#{$i * $num} {
+		padding-bottom: #{$i * $num}px;
+	}
+}
+
+// old
+.inner {
+	//min-width: 768px; /* 最小幅 768px */
+	//max-width: 1200px; /* 最大幅 1200px */
+	//width: 100%;
+	width: 1200px;
+	margin: 0 auto;
+	&:after {
+		content: "";
+		clear: both;
+		display: block;
+	}
+}
+// new
+.l-inner {
+	width: 1200px;
+	margin: 0 auto;
+	&:after {
+		content: "";
+		clear: both;
+		display: block;
+	}
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+a {
+	text-decoration: none;
+	color: $baseColorLt;
+}
+@mixin hoverOpc {
+	transition: opacity 0.3s ease;
+	&:hover {
+		opacity: 0.5;
+	}
+}
+.nolink {
+	background-color: $colorGy !important;
+	a {
+		pointer-events: none;
+		cursor: default;
+	}
+}
+.nolink2 {
+	a {
+		pointer-events: none;
+		opacity: 0.5;
+		cursor: default;
+	}
+}
+
+.titleStyle {
+	font-size: $fontSize20;
+	font-weight: 400;
+	color: $baseColor;
+	text-align: center;
+	margin-bottom: 30px;
+	&:after {
+		content: "";
+		display: block;
+		width: 100px;
+		height: 1px;
+		background-color: $baseColor;
+		margin: 30px auto 0;
+	}
+}
+
+.title2 {
+	color: white;
+	font-size: $fontSize20;
+	text-align: center;
+	background-color: $baseColor;
+	padding: 6px 0;
+}
+
+.pageTitle {
+	font-size: $fontSize36;
+	font-weight: 500;
+	text-align: center;
+	width: 100%;
+	height: 150px;
+	line-height: 150px;
+	background-color: $baseColorLt;
+	color: $colorWt;
+	&__new {
+		position: relative;
+		&:before {
+			position: absolute;
+			top: -90px;
+			left: -70px;
+			content: "NEW";
+			color: red;
+			text-shadow:2px 2px 30px #aaa;
+			display: inline-block;
+			padding: 10px 20px;
+			transform: rotate(-20deg);
+		}
+	}
+}
+
+.page-top-link {
+	text-align: right;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	a {
+		display: inline-block;
+		background-color: $baseColor;
+		color: white;
+		padding: 3px 15px 3px 35px;
+		position: relative;
+		i {
+			position: absolute;
+			top: 5px;
+			left: 5px;
+		}
+	}
+}
+
+/*---------- ヘッダー ----------*/
+header {
+	background-color: $colorWt;
+	.headGuide {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+		h1 {
+			margin-top: 6px;
+			margin-right: 10px;
+			.logo {
+				width: 340px;
+			}		
+		}
+		dl {
+			margin-top: 10px;
+			margin-right: 10px;
+			dt {
+				clear: left;
+				float: left;
+				display: inline-block;
+				background-color: $baseColorLt;
+				color: $colorWt;
+				font-size: $fontSize14;
+				padding: 4px 7px;
+			}
+			dd {
+				padding-left: 3em;
+				margin-bottom: 10px;
+				font-size: 18px;
+				.headGuide_date {
+					font-size: 24px;
+					font-weight: 600;
+				}
+				.headGuide_time {
+					font-size: 20px;
+					font-weight: 600;
+				}
+				.headGuide_access {
+					a {
+						display: inline-block;
+						background-color: $baseColorLt;
+						color: $colorWt;
+						font-size: $fontSize14;
+						padding: 4px 7px;
+						margin-left: 20px;
+						@include hoverOpc;
+					}
+				}
+			}
+		}
+		.exhibit_outside_link {
+			font-size: $fontSize12;
+			margin-top: 20px;
+			margin-right: 10px;
+			li {
+				a {
+					display: inline-block;
+					border-radius: 2px;
+					font-size: 10px;
+					padding: 2px 6px;
+					width: 9em;
+					line-height: 1.8;
+					&:hover {
+						opacity: 0.5;
+					}
+				}
+			}
+			li:nth-child(1) {
+				margin-bottom: 10px;
+				a{
+					background: #0093cf;
+					color: #fff;
+				}
+			}
+			li:nth-child(2) {
+				a {
+					border: 1px solid #0093cf;
+					background: #fff;
+					color: #0093cf;
+				}
+			}
+		}
+		.headGuide_contact {
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: center;
+			li {
+				width: 100px;
+				a {
+					display: block;
+					width: 100%;
+					height: 100%;
+					color: $colorWt;
+					font-size: $fontSize14;
+					line-height: 1;
+					text-align: center;
+					padding-top: 25px;
+					@include hoverOpc;
+					img {
+						width: 25px;
+						margin-bottom: 5px;
+					}
+				}
+			}
+			li:nth-child(1) a {
+				background-color: $colorRed;
+			}
+			li:nth-child(2) a {
+				background-color: $colorBlue;
+			}
+			li:nth-child(3) a {
+				background-color: $baseColorLt;
+				font-size: $fontSize18;
+				padding-top: 38px;
+			}
+		}
+	}
+	nav{
+		.commonMenu {
+			background-color: $baseColor;
+			.commonMenuBox {
+				display: flex;
+				flex-flow: row nowrap;
+				justify-content: space-around;
+				align-items: center;
+				padding: 8px 0;
+				position: relative; //dropdown menu
+				.mainmenu {
+					font-size: $fontSize14;
+					&:first-child span {
+						display: inline-block;
+						background-color: $colorWt;
+						color: $baseColor;
+						padding: 2px 10px;
+					}
+					a {
+						color: $colorWt;
+						transition: all 0.3s ease;
+						display: block;
+						&:hover {
+							border-bottom: 1px solid $colorWt;
+						}
+						img {
+							width: 6px;
+							vertical-align: middle;
+							margin-left: 8px;
+						}
+					}
+					//dropdown menu
+					.submenu {
+						position: absolute;
+						top: 21px;
+						font-size: 14px;
+						width: 200px;
+						transition: .2s ease;
+						visibility: hidden;
+						//opacity: 0;
+						z-index: 100;
+						li {
+							line-height: 1.2;
+							padding: 8px 5px 8px 10px;
+							background: $baseColor;
+						}
+					}
+				}
+				//dropdown menu
+				.mainmenu:hover {
+					transition: .2s ease;
+					position: relative;
+					.submenu {
+						top: 31px;
+						visibility: visible;
+						opacity: 1;
+					}
+				}
+			}
+		}
+		.exhibitMenu {
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: space-between;
+			box-sizing: border-box;
+			position: relative; //dropdown menu
+			box-shadow: 2px 2px 4px -2px #cccccc;
+			.mainmenu {
+				font-size: 20px;
+				width: 20%;
+				line-height: 1.2;
+				padding: 8px 0;
+				display: flex; //for 1行タイトルの縦位置調整
+				a {
+					display: flex;
+					flex-flow: row nowrap;
+					justify-content: flex-start;
+					align-items: center;
+					white-space: nowrap;
+					@include hoverOpc;
+					p {
+						position: relative; // for new
+					}
+					p:nth-child(1) {
+						margin-left: 5%;
+					}
+					p:nth-child(2) {
+						margin-left: 5%;
+						font-size: 19px;
+					}
+					span {
+						font-size: 12px;
+					}
+				}
+				&__new {
+					position: absolute;
+					top: -10px;
+					left: -49px;
+					transform: rotate(-12deg);
+					color: white;
+					font-size: 16px !important;
+					background-color: red;
+					padding: 1px 4px;
+				}
+				//dropdown menu
+				.submenu {
+					position: absolute;
+					top: 52px;
+					font-size: 14px;
+					width: 240px;
+					transition: .2s ease;
+					visibility: hidden;
+					z-index: 100;
+					opacity: 0;
+					background: $colorWt;
+					// IEのみ1カラム分、左側にずれるためハック
+					@media all and (-ms-high-contrast: none){
+						margin-left: -180px;
+					}
+					li {
+						line-height: 1.2;
+						padding: 8px 0 8px 10px;
+					}
+				}
+				//九州ホームショー
+				&:nth-child(1) {
+					border-left: 4px solid $baseColorHome;
+					a {
+						color: $baseColorHome;
+					}
+				}
+				//九州 店舗・商業空間デザイン展
+				&:nth-child(2) {
+					border-left: 4px solid $baseColorDesign;
+					a {
+						color: $baseColorDesign;
+					}
+				}
+				//九州団地・マンションリノベーション総合展
+				&:nth-child(3) {
+					border-left: 4px solid $baseColorRenov;
+					a {
+						color: $baseColorRenov;
+						p:nth-child(2) { // リノベのみフォントサイズ小
+							font-size: 17px;
+						}
+					}
+				}
+				//九州住宅リフォームEXPO
+				&:nth-child(4) {
+					border-left: 4px solid $baseColorReform;
+					a {
+						color: $baseColorReform;
+					}
+				}
+				//九州トイレ産業展
+				&:nth-child(5) {
+					border-left: 4px solid $baseColorToilet;
+					a {
+						color: $baseColorToilet;
+					}
+				}
+			}
+			//dropdown menu
+			li.mainmenu:hover {
+				transition: .2s ease;
+				position: relative;
+				ul.submenu {
+					//top: 64px;
+					top: 62px;
+					visibility: visible;
+					opacity: 1;
+				}
+			}
+		}
+	}
+	nav.fixed {
+		position: fixed;
+		top: 0;
+		width: 100%;
+		background: $colorWt;
+		z-index: 999;
+		transition: top 0.65s ease-in;
+	}
+}
+
+/* 不要？
+.mainmenu:before,
+.mainmenu:after {
+	content: "";
+	display: table;
+}
+
+.mainmenu {
+	*zoom: 1;
+}
+*/
+
+/*---------- キービジュアル ----------*/
+/*
+.mainVisualImg {
+	width: 100%;
+	height: 300px;
+	background-image: url(#{$imgDir}bg1.jpg);
+	background-position: center center;
+	background-size: cover;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+*/
+
+.mainVisual {
+	width: 100%;
+	height: 335px;
+	overflow: hidden;
+	position: relative;
+	&__slider {
+		img {
+			max-width: none;
+		}
+	}
+	&__pop {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	&__title {
+		display: flex;
+		flex-flow: row;
+		justify-content: center;
+		align-items: center;
+		background-color: rgba(255,255,255,0.6);
+		padding: 20px 50px;
+		img {
+			width: 500px;
+		}
+	}
+	&__bnr {
+		margin-left: 20px;
+		background: $colorWt;
+		white-space: nowrap;
+		p {
+			text-align: center;
+			padding: 10px 20px;
+			font-weight: 500;
+			&:nth-child(1) {
+				background: $colorRed;
+				color: $colorWt;
+			}
+		}
+	}
+}
+
+/*---------- What's New ----------*/
+.information {
+	background: $colorWt;
+	.l-inner {
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 20px;
+		color: $baseColorDk;
+		&:before {
+			content: "";
+			display: block;
+			width: 0;
+			min-height: 100px;
+		}
+		.infoTitle {
+			width: 20%;
+			h2 {
+				padding-right: 4em;
+				white-space: nowrap;
+			}
+		}
+		dl {
+			padding-left: 4em;
+			border-left: 1px solid $baseColorDk;
+			dt {
+				clear: both;
+				float: left;
+				width: 7em;
+			}
+			dd {
+				margin-left: 7em;
+				a {
+					//@include hoverUnderline;
+					color: $baseColorDk;
+					text-decoration: underline;
+					&:hover {
+						opacity: 0.5;
+					}
+				}
+			}
+		}
+	}
+}
+
+/*---------- about ----------*/
+.about {
+	text-align: center;
+	padding-top: 50px;
+	color: $baseColor;
+	.about_headTxt {
+		font-size: $fontSize28;
+		color: $baseColorDesign;
+		font-weight: 600;
+		margin-bottom: 40px;
+	}
+	h2 {
+		@extend .titleStyle;
+		span {
+			font-size: 24px;
+		}
+	}
+	.aboutBox {
+		display: flex;
+		flex-flow: row nowrap;
+		text-align: left;
+		margin-bottom: 80px;
+		line-height: 1.8;
+		.aboutBox_bgImg {
+			width: 50%;
+			position: relative;
+			background-size: cover;
+			&:after {
+				content: url(#{$imgDir}arrow_right_blue.svg);
+				position: absolute;
+				top: calc(50% - 33px);
+				left: 87%;
+				width: 50px;
+			}
+			.aboutBox_mask {
+				background: rgba(255,255,255,0.7);
+				height: 100%;
+				padding: 30px;
+				ul {
+					width: 87%;
+					list-style-type: disc;
+					margin-left: 16px;
+				}
+			}
+		}
+		&.part1 {
+			.aboutBox_bgImg {
+				background-image: url("#{$imgDir}about_img01.jpg");
+			}
+		}
+		&.part2 {
+			.aboutBox_bgImg {
+				background-image: url("#{$imgDir}about_img02.jpg");
+			}
+		}
+		.aboutBox_text {
+			width: 50%;
+			background-color: $baseColor;
+			color: $colorWt;
+			padding: 50px 30px;
+			p + p{
+				margin-top: 20px;
+			}
+			.aboutBox_text_btn {
+				a {
+					display: inline-block;
+					background-color: $colorWt;
+					color: $baseColor;
+					border: 1px solid transparent;
+					padding: 8px 15px;
+					transition: all 0.3s ease;
+					&:hover {
+						background-color: $baseColor;
+						color: $colorWt;
+						border: 1px solid $colorWt;
+					}
+				}
+			}
+		}
+	}
+}
+
+/*---------- discount ----------*/
+.discount {
+	.discountBlock {
+		max-width: 700px;
+		margin: 0 auto 80px;
+		background-color: $colorWt;
+		display: flex;
+		flex-flow: row nowrap;
+		dt {
+			width: 50%;
+			background-color: $baseColorToilet;
+			color: $colorWt;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: $fontSize22;
+		}
+		dd.discount_deadline {
+			width: 50%;
+			padding: 30px;
+			p {
+				letter-spacing: 1.5px;
+				span {
+					font-size: $fontSize24;
+					font-weight: 500;
+				}
+			}
+		}
+	}
+}
+
+/*---------- menuBnr ----------*/
+.menuBnr {
+	margin-bottom: 80px;
+	h2 {
+		@extend .titleStyle;
+		font-size: $fontSize22;
+	}
+	ul {
+		li {
+			float: left;
+			width: 50%;
+			position: relative;
+			a {
+				transition: opacity 0.3s ease;
+				&:hover {
+					opacity: 0.5;
+				}
+				.menuBnr_box {
+					position: absolute;
+					top: 20%;
+					left: 0;
+					right: 0;
+					margin: auto;
+					text-align: center;
+					.menuBnr_num {
+						font-size: $fontSize20;
+						margin-bottom: 10px;
+					}
+					.menuBnr_name {
+						font-size: $fontSize34;
+						font-weight: 600;
+						margin-bottom: 10px;
+					}
+					.menuBnr_desc {
+						font-size: $fontSize13;
+					}
+					&.part2 {
+						top: 10%;
+					}
+					&.part3 {
+						top: 15%;
+					}
+					&.part4 {
+						top: 25%;
+					}
+					&.part5 {
+						top: 25%;
+					}
+				}
+			}
+			&:nth-child(1) {
+				a {
+					.menuBnr_box {
+						color: $baseColorHome;
+					}
+				}
+			}
+			&:nth-child(2) {
+				a {
+					.menuBnr_box {
+						color: $baseColorDesign;
+					}
+				}
+			}
+			&:nth-child(3) {
+				a {
+					.menuBnr_box {
+						color: $baseColorRenov;
+					}
+				}
+			}
+			&:nth-child(4) {
+				a {
+					.menuBnr_box {
+						color: $baseColorReform;
+					}
+				}
+			}
+			&:nth-child(5) {
+				a {
+					.menuBnr_box {
+						color: $baseColorToilet;
+					}
+				}
+			}
+		}
+	}
+}
+
+/*---------- 来場の様子 ----------*/
+.slideShow {
+	width: 756px;
+	margin: 0 auto 80px;
+	h2 {
+		@extend .titleStyle;
+	}
+	.slideShow__box {
+		padding: 0;
+	}
+}
+
+/*---------- footer ----------*/
+footer {
+	background: $baseColorLt;
+	color: $colorWt;
+	padding-top: 40px;
+	padding-bottom: 20px;
+	.l-inner {
+		max-width: 800px;
+		.contact_document {
+			font-size: $fontSize18;
+			display: flex;
+			flex-flow: row nowrap;
+			margin-bottom: 50px;
+			ul {
+				width: 50%;
+				li {
+					position: relative;
+					&:after {
+						display: block;
+						content: '';
+						position: absolute;
+						top: .5em;
+						left: -1em;
+						width: 8px;
+						height: 3px;
+						border-left: 2px solid $colorWt;
+						border-bottom: 2px solid $colorWt;
+						transform: rotate(-45deg);
+					}
+				}
+			}
+			figure {
+				width: 50%;
+				text-align: right;
+				img {
+					width: 370px;
+				}
+			}
+		}
+		.contact_btn {
+			margin-bottom: 50px;
+			a {
+				display: block;
+				width: 100%;
+				color: $colorWt;
+				background: $colorOrange;
+				padding: 25px 0;
+				text-align: center;
+				font-size: $fontSize24;
+				border-radius: 10px;
+				@include hoverOpc;
+			}
+		}
+		.contact_box {
+			max-width: 800px;
+			margin: 0 auto;
+			background: $colorWt;
+			color: $baseColorDk;
+			h2 {
+				background: $baseColorVacant;
+				text-align: center;
+				font-size: $fontSize20;
+				font-weight: 400;
+				color: $colorWt;
+				padding: 10px 0;
+			}
+			.contact_address {
+				display: flex;
+				flex-flow: row nowrap;
+				dl {
+					width: 50%;
+					padding: 30px 0 0 50px;
+					dt {
+						&:nth-of-type(2) {
+							margin-bottom: 5px;
+						}
+					}
+					dd {
+						&.contact_tel {
+							font-size: 20px;
+							margin-bottom: 15px;
+							span {
+								font-size: 36px;
+								color: $baseColorHome;
+							}
+						}
+						&.contact_jma_address {
+							font-size: $fontSize13;
+							a {
+								display: inline-block;
+								margin-bottom: 10px;
+								@include hoverOpc;
+							}
+						}
+					}
+					.contact__append {
+						display: inline-block;
+						font-size: $fontSize13;
+						margin-top: 10px;
+					}
+				}
+				figure {
+					width: 50%;
+					img {
+						width: 100%;
+					}
+				}
+			}
+		}
+	}
+}
+
+.footer {
+	&__logo {
+		text-align: center;
+		margin-top: 50px;
+		margin-bottom: 10px;
+		a + a {
+			margin-left: 20px;
+		}
+		img {
+			width: 100px;
+		}
+		&__jbma img {
+			width: 90px;
+		}
+	}
+	&__copyright {
+		text-align: center;
+		font-size: 12px;
+	}
+}
+
+/*---------- subVisual ----------*/
+
+.visualimg {
+	height: 300px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	h2 {
+		font-size: $fontSize46;
+		font-weight: 500;
+		color: $colorWt;
+		padding: 5px 30px;
+	}
+}
+.subVisual {
+	#home-build & {
+		@extend .visualimg;
+		background: url(#{$imgDir}bg_sub_2.jpg) center center /cover no-repeat $baseColorHome;
+		h2 {
+			background: rgba(233,85,4,0.7);
+		}
+	}
+	#commercial & {
+		@extend .visualimg;
+		background: url(#{$imgDir}bg_sub_1.jpg) center center /cover no-repeat $baseColorDesign;
+		h2 {
+			background: rgba(229,19,115,0.7);
+		}
+	}
+	#renovation & {
+		@extend .visualimg;
+		background: url(#{$imgDir}bg_sub_5.jpg) center center /cover no-repeat $baseColorRenov;
+		h2 {
+			background: rgba($baseColorRenov, 0.7);
+		}
+	}
+	#reform & {
+		@extend .visualimg;
+		background: url(#{$imgDir}bg_sub_6.jpg) center center /cover no-repeat $baseColorReform;
+		h2 {
+			background: rgba($baseColorReform, 0.7);
+		}
+	}
+	#vacant & {
+		@extend .visualimg;
+		background: url(#{$imgDir}bg_sub_3.jpg) center center /cover no-repeat $baseColorVacant;
+		h2 {
+			background: rgba(10,137,59,0.7);
+		}
+	}
+	#toilet & {
+		@extend .visualimg;
+		background: url(#{$imgDir}bg_sub_4.jpg) center center /cover no-repeat $baseColorToilet;
+		h2 {
+			background: rgba(207,17,27,0.7);
+		}
+	}
+}
+
+/*---------- 来場ご希望の方へ ----------*/
+
+.visit {
+	margin: 50px auto 80px;
+	h2 {
+		@extend .titleStyle;
+	}
+	.visitBox {
+		display: flex;
+		flex-flow: row nowrap;
+		max-width: 800px;
+		margin: 0 auto;
+		dl {
+			width: calc(100% / 3);
+			background-color: $colorWt;
+			padding: 20px;
+			dt {
+				a {
+					line-height: 3em;
+					@include hoverOpc;
+				}
+			}
+		}
+	}
+}
+
+/*---------- 各展示会ページ：◯◯とは（about） ----------*/
+
+.intro .l-inner, .summary .l-inner {
+	max-width: 800px;
+	margin: 80px auto 80px;
+}
+.intro {
+	h2 {
+		@extend .titleStyle;
+	}
+	.figArea {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-between;
+		margin-top: 20px;
+		figure {
+			width: 48%;
+			text-align: center;
+			img {
+				border: 1px solid $colorGy;
+			}
+			.figNote {
+				text-align: left;
+				font-size: $fontSize12;
+				margin-top: 10px;
+			}
+		}
+	}
+	.figArea-2 {
+		justify-content: center;
+	}
+}
+.summary {
+	h2 {
+		@extend .titleStyle;
+	}
+}
+
+/*---------- 各展示会ページ：出展対象・来場対象（target） ----------*/
+
+.target .l-inner, .targetVisit .l-inner {
+	max-width: 800px;
+	margin: 80px auto;
+}
+.target, .targetVisit {
+	h2 {
+		@extend .titleStyle;
+	}
+	ul {
+		border-top: 1px solid $baseColorLt;
+		border-bottom: 1px solid $baseColorLt;
+		padding: 20px 0;
+		li {
+			display: inline;
+			margin-right: 1em;
+			line-height: 1.8;
+			font-size: $fontSize14;
+			&:before {
+				content: "●";
+				color: lighten($baseColorLt, 25%);
+			}
+		}
+	}
+}
+
+/*---------- Tableスタイル共通 ----------*/
+
+.tableStyle01 {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid $baseColorLt;
+	tr {
+		padding: 20px 0;
+		th {
+			background-color: $baseColorLt;
+			color: $colorWt;
+			width: 20%;
+			font-weight: 400;
+			padding: 20px 5px;
+			vertical-align: middle;
+			&.tableTitle {
+				background-color: lighten($baseColorLt, 25%);
+			}
+		}
+		td {
+			padding: 20px;
+		}
+		+ tr {
+			th {
+				border-top: 1px solid $colorWt;
+			}
+			td {
+				border-top: 1px solid $baseColorLt;
+			}
+		}
+	}
+}
+
+/*---------- 本展の特長 ----------*/
+
+.advantage {
+	padding: 50px 0;
+	background-color: $colorWt;
+	.l-inner {
+		max-width: 800px;
+	}
+	&__fig {
+		display: flex;
+		flex-flow: row;
+		justify-content: space-between;
+		padding: 40px 0;
+		li {
+			width: 48%;
+		}
+	}
+}
+
+/*---------- 取材について ----------*/
+
+.pressEntry .l-inner, .pressTv .l-inner, .pressAttention .l-inner {
+	max-width: 800px;
+	margin: 50px auto;
+}
+.pressEntry, .pressTv, .pressAttention {
+	h2 {
+		@extend .titleStyle;
+	}
+}
+.pressTv {
+	.pressTv_contact {
+		background-color: lighten($baseColorLt, 50%);
+		padding: 20px;
+		margin-top: 10px;
+		h3 {
+			font-weight: 500;
+			font-size: $fontSize18;
+		}
+		p {
+			line-height: 1.6;
+		}
+	}
+}
+
+/*---------- 出展料金・ブースサイズ ----------*/
+
+/*
+.exhibitFee {
+	background-color: $colorWt;
+	padding: 50px 0;
+	.l-inner {
+		max-width: 800px;
+		h2 {
+			@extend .titleStyle;
+		}
+		p + h2 {
+			padding-top: 40px;
+		}
+		p {
+			margin-bottom: 30px;
+			&.boothImg, &.feeImg, &.decoImg {
+				text-align: center;
+			}
+			&.boothImg {
+				img {
+					width: 600px;
+				}
+			}
+			&.feeImg {
+				img {
+					width: 700px;
+				}
+			}
+			&.feeDeadline {
+				span {
+					color: $colorRed;
+				}
+			}
+			&.decoImg {
+				img {
+					width: 100%;
+				}
+			}
+		}
+	}
+}*/
+
+/*---------- 会期までのスケジュール ----------*/
+
+.schedule {
+	margin: 50px 0;
+	h2 {
+		@extend .titleStyle;
+	}
+	dl.scheduleBox {
+		display: flex;
+		flex-wrap: wrap;
+		width: 800px;
+		margin: 0 auto;
+		dt.schedule_date {
+			width: 30%;
+			background-color: $baseColorLt;
+			color: $colorWt;
+			padding: 20px;
+			margin-bottom: 35px;
+			position: relative;
+		}
+		dd.schedule_detail {
+			width: 70%;
+			background-color: $colorWt;
+			padding: 20px;
+			margin-bottom: 35px;
+			> ul {
+				> li {
+					list-style-type: disc;
+					margin-left: 16px;
+				}
+			}
+			&.earlyDeadline {
+				color: $colorRed;
+				font-weight: 500;
+				span {
+					display: inline-block;
+					background-color: $colorRed;
+					color: $colorWt;
+					padding: 0 1em;
+				}
+			}
+			li.normalDeadline {
+				color: $colorOrange;
+				font-weight: 500;
+			}
+			dl.schedule_june {
+				display: flex;
+				flex-wrap: wrap;
+				dt {
+					width: 20%;
+				}
+				dd {
+					width: 80%;
+				}
+			}
+			+ dt.schedule_date:before {
+				content: url(#{$imgDir}arrow_down_blue.svg);
+				position: absolute;
+				top: -25px;
+				left: 165%;
+				width: 30px;
+			}
+		}
+	}
+}
+
+/*---------- 来場するには ----------*/
+
+.visitRoute {
+	margin-bottom: 50px;
+	.l-inner {
+		max-width: 800px;
+	}
+	h2 {
+		@extend .titleStyle;
+		padding-top: 50px;
+	}
+	p {
+		&.visitRoute_deadline {
+			display: inline-block;
+			padding: 10px 20px;
+			background-color: lighten($baseColorLt, 20%);
+			color: $colorWt;
+			margin-top: 10px;
+		}
+		&.visitRoute_btn {
+			text-align: center;
+			a {
+				display: inline-block;
+				color: $colorWt;
+				background-color: $baseColorDesign;
+				border: 1px solid $baseColorDesign;
+				padding: 10px 30px;
+				margin-top: 20px;
+				transition: 0.3s ease;
+				&:hover {
+					color: $baseColorDesign;
+					background-color: $colorWt;
+				}
+			}
+		}
+	}
+}
+
+/*---------- ロゴ・バナーダウンロード ----------*/
+
+.logoBanner {
+	margin-bottom: 80px;
+	.l-inner {
+		max-width: 800px;
+		h2 {
+			@extend .titleStyle;
+			padding-top: 50px;
+		}
+		.logoBanner_txt {
+			margin: 20px 0;
+		}
+		ul.logoBanner_attention {
+			background-color: lighten($baseColorLt, 50%);
+			padding: 20px;
+			line-height: 1.8;
+		}
+	}
+}
+
+.logoBanner_box {
+	display: flex;
+	flex-wrap: wrap;
+	border: 1px solid $baseColorLt;
+	margin: 20px 0;
+	h3 {
+		width: 100%;
+		background: $baseColorLt;
+		color: $colorWt;
+		padding: 15px 0;
+		text-align: center;
+		font-size: $fontSize20;
+	}
+	.logoBanner_boxInner {
+		width: 50%;
+		background-color: $colorWt;
+		padding: 20px 0;
+		&.left {
+			padding-left: 20px;
+			padding-right: 10px;
+		}
+		&.right {
+			padding-left: 10px;
+			padding-right: 20px;
+		}
+		h4 {
+			font-size: $fontSize18;
+			border-left: 5px solid $baseColor;
+			padding-left: 5px;
+			margin-bottom: 10px;
+		}
+		.logoBanner_img {
+			text-align: center;
+			border: 1px solid $colorGy;
+			padding: 10px;
+			img {
+				width: 90%;
+				+ img {
+					padding-top: 10px;
+				}
+			}
+		}
+		.logoBanner_btn {
+			margin: 10px 0;
+			a {
+				display: inline-block;
+				padding: 10px 20px;
+				font-size: $fontSize14;
+				border: 1px solid $baseColorLt;
+				transition: 0.3s ease;
+				&:hover {
+					background-color: $baseColorLt;
+					color: $colorWt;
+				}
+			}
+		}
+		.source_title {
+			color: $baseColorLt;
+			font-size: $fontSize18;
+			margin: 15px 0;
+		}
+		.sourceCode {
+			width: 321px;
+			overflow: auto;
+			word-wrap: break-word;
+			border: 1px solid $colorGy;
+			margin-bottom: 20px;
+			padding: 20px;
+			color: $baseColorDk;
+			font-family: monospace, monospace;
+			pre {
+				margin-bottom: 10px;
+			}
+		}
+	}
+}
+
+/*---------- お見舞い文 ----------*/
+.omimai {
+	text-align: center;
+	padding-top: 30px;
+}
+
+/*---------- インタビュー ----------*/
+.interview {
+	&--inner {
+		max-width: 750px;
+		margin: 0 auto;
+		padding: 50px 0;
+		margin-bottom: 100px; // リストが1つのため、見た目調整で暫定的に余白をプラス
+	}
+	&__list {
+		width: 100%;
+		li {
+			margin-bottom: 20px;
+			a {
+				display: flex;
+				justify-content: space-between;
+				width: 100%;
+				background-color: white;
+				color: $baseColor;
+				border: 1px solid $baseColor;
+				border-left: 5px solid $baseColor;
+				transition: all 0.3s;
+				&:hover {
+					opacity: 0.5;
+				}
+				img {
+					width: 300px;
+				}
+			}
+		}
+		&__txt {
+			padding: 15px;
+		}
+		&__title {
+			font-size: $fontSize22;
+			margin-bottom: 50px;
+		}
+		&__name {
+			font-size: $fontSize18;
+		}
+		&__new {
+			color: red;
+			font-weight: 500;
+			padding-left: 10px;
+			font-style: italic;
+		}
+	}
+}
+
+/*---------- インタビュー記事 ----------*/
+.story {
+	&--inner {
+		max-width: 800px;
+		padding: 50px 0;
+	}
+	&__head {
+		font-weight: 400;
+		border: 1px solid $colorGy;
+		padding: 30px;
+		background: rgba(white, 0.6);
+		margin-bottom: 40px;
+		span {
+			display: block;
+		}
+		&__num {
+			font-size: $fontSize30;
+		}
+		&__title {
+			font-size: $fontSize28;
+			color: $baseColorLt;
+			margin-bottom: 15px;
+		}
+		&__name {
+			font-size: $fontSize20;
+		}
+	}
+	&__lead {
+		display: flex;
+		flex-flow: row;
+		justify-content: space-between;
+		&__desc {
+			width: 55%;
+			font-size: $fontSize15;
+			font-weight: 400;
+			color: $baseColorDk;
+			line-height: 1.8;
+			margin-bottom: 30px;
+		}
+		&__fig {
+			width: 40%;
+		}
+	}
+	&__append {
+		text-align: right;
+		font-size: $fontSize14;
+		margin-bottom: 50px;
+	}
+	&__role {
+		border-left: 5px solid $baseColorLt;
+		padding-left: 5px;
+		margin-bottom: 20px;
+	}
+	&__txt {
+		margin-bottom: 30px;
+		padding-left: 1em;
+		&--bold {
+			font-weight: 600;
+		}
+	}
+	figure {
+		margin-bottom: 40px;
+	}
+	&__fig {
+		&--col {
+			width: 500px;
+			margin: 0 auto;
+		}
+		&--row {
+			width: 650px;
+			margin: 0 auto;
+		}
+	}
+	&__return {
+		width: 300px;
+		margin: 0 auto;
+		a {
+			display: block;
+			width: 100%;
+			color: white;
+			text-align: center;
+			background-color: $baseColorLt;
+			border: 1px solid transparent;
+			padding: 15px;
+			transition: all 0.3s;
+			&:hover {
+				background-color: white;
+				color: $baseColorLt;
+				border: 1px solid $baseColorLt;
+			}
+		}
+	}
+}
+
+// pageNav ------------------------------
+.pageNav {
+	padding-top: 50px;
+	padding-bottom: 50px;
+	.l-inner {
+		max-width: 850px;
+		padding: 0 10px;
+		.pageNav__list {
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-between;
+			align-items: center;
+			li {
+				background-color: $baseColor;
+				margin-bottom: 5px;
+				position: relative;
+				@include hoverOpc;
+				a {
+					color: white;
+					display: block;
+					width: 100%;
+					padding: 8px 35px 8px 20px;
+					i {
+						position: absolute;
+						top: 9px;
+						right: 8px;
+					}
+				}
+			}
+		}
+	}
+	&--fee {
+		padding-bottom: 20px;
+		.l-inner {
+			max-width: $baseColor;
+		}
+	}
+}
+
+/*---------- 出展料金・ブースサイズ ----------*/
+.exhibit-booth {
+	padding-top: 50px;
+	padding-bottom: 50px;
+	&--inner {
+		max-width: 800px;
+	}
+	&__mainTitle {
+		margin-bottom: 50px;
+	}
+	&__head {
+		text-align: left;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	&__titleDesc {
+		font-size: $fontSize14;
+	}
+	&__body {
+		background-color: white;
+		padding: 30px;
+		display: flex;
+		flex-flow: row;
+		justify-content: space-between;
+		border: 1px solid $baseColor;
+		&--left {
+		}
+		&--right {
+			text-align: center;
+		}
+	}
+	&__subTitle {
+		border-left: 5px solid $baseColor;
+		padding-left: 5px;
+		margin-bottom: 20px;
+	}
+	&__list {
+		font-size: $fontSize14;;
+		line-height: 2;
+		margin-bottom: 30px;
+		li {
+			&:before {
+				content: "●";
+				color: $baseColor;
+				margin-right: 5px;
+			}
+		}
+	}
+	&__append {
+		font-size: $fontSize14;
+	}
+	&__fig {
+		margin-bottom: 20px;
+		img {
+			max-width: 300px;
+		}
+	}
+	&__example {
+		display: inline-block;
+		background-color: $baseColor;
+		color: white;
+		padding: 5px 20px;
+		border-radius: 10px;
+	}
+}
+
+@mixin tbl-style($theme: $baseColorDesign) {
+	width: 100%;
+	border: 1px solid $theme;
+	background-color: white;
+	tr {
+		th, td {
+			border: 1px solid $theme;
+			font-size: $fontSize18;
+		}
+		th {
+			background-color: $theme;
+			color: white;
+			font-weight: 500;
+			padding: 10px;
+			vertical-align: middle;
+		}
+		td {
+			text-align: center;
+			padding: 20px;
+		}
+	}
+	.exhibit-fee__tbl__categ {
+		background-color: lighten($theme, 35%);
+	}
+}
+.exhibit-fee {
+	padding-bottom: 50px;
+	&--inner {
+		max-width: 800px;
+	}
+	&__head {
+		display: flex;
+		flex-flow: row;
+		justify-content: flex-start;
+		align-items: flex-end;
+		margin-bottom: 15px;
+	}
+	&__title {
+		border-left: 5px solid $baseColorDesign;
+		padding-left: 5px;
+		font-size: $fontSize18;
+		color: $baseColorDesign;
+		font-weight: 500;
+		margin-right: 20px;
+		&2 {
+			color: $baseColorDk;
+			border-left: 5px solid $baseColorDk;
+		}
+		&3 {
+			color: #F47632;
+			border-left: 5px solid #F47632;
+		}
+		&4 {
+			color: $baseColor;
+			border-left: 5px solid $baseColor;
+			margin-bottom: 15px;
+		}
+	}
+	&__tblContainer {
+		width: 100%;
+		overflow: auto;
+		white-space: nowrap;
+	}
+	&__tbl {
+		@include tbl-style;
+	}
+	&__tbl2 {
+		@include tbl-style($baseColorDk);
+		.exhibit-fee__tbl__categ {
+			background-color: lighten($baseColorDk, 75%);
+		}
+	}
+	&__tbl3 {
+		@include tbl-style(#F47632);
+		tr {
+			th, td {
+				vertical-align: middle;
+				font-size: $fontSize15;
+			}
+		}
+		.exhibit-fee__tbl__categ {
+			background-color: lighten(#F47632, 30%);
+		}
+	}
+	&__tbl4 {
+		@include tbl-style($baseColor);
+		.exhibit-fee__tbl__categ {
+			background-color: white;
+		}
+	}
+	&__append {
+		font-size: $fontSize14;
+		li {
+			padding-left: 1em;
+			text-indent: -1em;
+			&:before {
+				content: "※";
+			}
+		}
+	}
+}
+.exhibit-apply, .exhibit-cancel, .exhibit-deco {
+	padding-top: 50px;
+	.l-inner {
+		max-width: 800px;
+	}
+}
+.exhibit-deco {
+	padding-bottom: 50px;
+	&__unit {
+		padding-top: 50px;
+		display: flex;
+		flex-flow: row;
+		justify-content: space-between;
+		&__left {
+		}
+		&__right {
+			text-align: center;
+		}
+	}
+	&__red {
+		color: red;
+	}
+	&__btn {
+		a {
+			display: block;
+			width: 100%;
+			background-color: $colorOrange;
+			color: white;
+			text-align: center;
+			padding: 15px;
+			font-size: $fontSize18;
+			border: 1px solid transparent;
+			transition: all ease 0.3s;
+			&:hover {
+				background-color: white;
+				color: $colorOrange;
+				border: 1px solid $colorOrange;
+				
+			}
+		}
+	}
+}
+.exhibit-cancel__deadline {
+	margin-top: 20px;
+	color: $colorRed;
+}
+
+// release ------------------------------
+.release {
+	padding: 80px 0 150px;
+	&--inner {
+		width: 900px;
+	}
+	&__define {
+		border-top: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		padding: 50px 0;
+		dt {
+			clear: both;
+			float: left;
+			width: 8em;
+		}
+		dd {
+			padding-left: 8em;
+			margin-bottom: 20px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}	
+}
+
